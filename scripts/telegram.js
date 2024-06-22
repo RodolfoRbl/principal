@@ -1,49 +1,51 @@
+import { getTelegramMessage, getTelegramCommand} from "../utils/telegram_updates.js";
 
 const form = document.getElementById('form-to-aws');
 const successMessage = document.querySelector('.success');
+const lastRecordsButton = document.querySelector('.js-last-records');
+
+//ENDPOINT
+function buildUrl () {
+const urlCode = document.getElementById('url-code').value;
+const last = urlCode.substr(-2);
+const apiEndpoint = `https://iek42z${last}tm4ip27cnkf4bw3${urlCode.substr(0,3)}0dzpyd.lambda-url.eu-central-1.on.aws/`
+return apiEndpoint
+}
+
+
+function showSuccessCheckmark() {
+  const checkmark = document.getElementById('success-checkmark');
+  checkmark.style.display = 'block';
+  setTimeout(() => {
+    checkmark.classList.add('fade-out');
+    setTimeout(() => {
+      checkmark.style.display = 'none';
+      checkmark.classList.remove('fade-out');
+    }, 500); // This should match the transition duration
+  }, 2000);
+}
+
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const description = document.getElementById('row-desc').value;
   const cost = document.getElementById('row-cost').value;
-  const urlCode = document.getElementById('url-code').value;
-  const last = urlCode.substr(-2);
-  const apiEndpoint = `https://iek42z${last}tm4ip27cnkf4bw3${urlCode.substr(0,3)}0dzpyd.lambda-url.eu-central-1.on.aws/`
 
   if (description && cost && urlCode) {
     const concatenatedMessage = `${description} ${cost}`;
 
-    const updateObject = {
-      update_id: Math.floor(Math.random() * 1000000),
-      message: {
-        message_id: Math.floor(Math.random() * 1000000),
-        from: {
-          id: 458923115, // Your bot or user ID here
-          is_bot: false,
-          first_name: "R",
-          username: "rr_01_rr"
-        },
-        chat: {
-          id: 458923115, // Your chat ID here
-          first_name: "R",
-          username: "rr_01_rr",
-          type: "private"
-        },
-        date: Math.floor(Date.now() / 1000),
-        text: concatenatedMessage
-      }
-    };
-
+    const updateObject = getTelegramMessage(concatenatedMessage);
+    
     try {
-      const response = await fetch(apiEndpoint, {
+      const response = await fetch(buildUrl(), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(updateObject)
       });
-
+      
       if (response.ok) {
         const responseData = await response.text();
         console.log(responseData);
@@ -62,3 +64,30 @@ form.addEventListener('submit', async (event) => {
     successMessage.style.color = 'red';
   }
 });
+
+
+lastRecordsButton.addEventListener('click', async () => {
+  
+  const updateObject = getTelegramCommand('last_records');
+  try {
+  const response = await fetch(buildUrl(),{
+    method: 'POST',
+    headers:  {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updateObject)
+  });
+
+  const responseData = await response.text();
+  console.log(responseData);
+  if (responseData === 'Success') {
+    showSuccessCheckmark();
+  }
+
+} catch (error) {
+  textArea.textContent = 'Error: ' + error.message;
+  setTimeout(() => textArea.textContent = "",1000)
+}
+}
+);
+
