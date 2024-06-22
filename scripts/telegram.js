@@ -31,7 +31,7 @@ form.addEventListener('submit', async (event) => {
 
   const description = document.getElementById('row-desc').value;
   const cost = document.getElementById('row-cost').value;
-
+  const urlCode = document.getElementById('url-code').value;
   if (description && cost && urlCode) {
     const concatenatedMessage = `${description} ${cost}`;
 
