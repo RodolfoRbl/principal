@@ -6,9 +6,6 @@ function generateHeader() {
           <nav class="nav">
               <a href="index.html">Home</a>
               <a href="telegram.html">Telegram</a>
-              <a href="#portfolio">Portfolio</a>
-              <a href="#services">Services</a>
-              <a href="#about">About</a>
               <a href="#contact">Contact</a>
               <a href="secondary.html">Test</a>
           </nav>
