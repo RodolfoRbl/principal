@@ -2,7 +2,7 @@ function generateHeader() {
   const header = document.getElementById('same-header');
   header.innerHTML = `
       <div class="header-container">
-          <div class="logo">BBVA</div>
+          <div class="logo">RRR</div>
           <nav class="nav">
               <a href="index.html">Home</a>
               <a href="telegram.html">Telegram</a>
