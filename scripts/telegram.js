@@ -60,7 +60,7 @@ function updateSuccessMessage(message, description, cost, color) {
 
 
 lastRecordsButton.addEventListener('click', async (event) => {
-
+  event.preventDefault()
   try {
     const responseData = await postAndRetrieve(buildUrl(), getTelegramCommand('last_records'),'text')
     console.log(responseData);
