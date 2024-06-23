@@ -5,115 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Telegram Bot</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-
-    .formbold-main-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px;
-    }
-
-    .formbold-form-wrapper {
-      margin: 0 auto;
-      max-width: 570px;
-      width: 100%;
-      background: white;
-      padding: 40px;
-    }
-
-    .formbold-input-wrapp {
-      margin-bottom: 15px;
-    }
-
-    .formbold-input-wrapp>div {
-      display: flex;
-      gap: 20px;
-    }
-
-    .formbold-form-input {
-      width: 100%;
-      padding: 13px 22px;
-      border-radius: 5px;
-      border: 1px solid #dde3ec;
-      background: #ffffff;
-      font-weight: 500;
-      font-size: 16px;
-      color: #536387;
-      outline: none;
-    }
-
-    .formbold-form-input::placeholder {
-      color: rgba(83, 99, 135, 0.5);
-    }
-
-    .formbold-form-input:focus {
-      border-color: #6a64f1;
-      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .formbold-form-label {
-      color: #536387;
-      font-size: 14px;
-      line-height: 24px;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .formbold-btn {
-      font-size: 16px;
-      border-radius: 5px;
-      padding: 14px 25px;
-      border: none;
-      font-weight: 500;
-      background-color:skyblue;
-      color: white;
-      cursor: pointer;
-      margin-top: 25px;
-    }
-
-    .formbold-btn-submit {
-      background-color: cornflowerblue;
-    }
-    .formbold-btn:hover {
-      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .send-buttons {
-      display: flex;
-      justify-content: center; /* Centers items horizontally */
-      align-items: center;     /* Centers items vertically */
-      height: 10vh;           /* Optional: Adjust as needed */
-    }
-
-    .checkmark {
-      display: none;
-      position: fixed;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 100px;
-      color: green;
-      opacity: 1;
-      transition: opacity 0.5s ease-in-out;
-    }
-  
-    .checkmark.fade-out {
-      opacity: 0;
-    }
-    
-  </style>
+  <link rel="stylesheet" href="../styles/telegram.css">
 </head>
 
 <body>
@@ -135,7 +27,7 @@
             <input type="text" name="lastname" id="row-cost" placeholder="Cost" class="formbold-form-input" />
           </div>
           <br>
-          <p class="success"></p>
+          <p class="success-message"></p>
           
           
           <div class="send-buttons">
@@ -146,10 +38,10 @@
         
         <div id="success-checkmark" class="checkmark">&#10003;</div>
       </form>
+      <p class="js-text-area text-area">dfe</p>
     </div>
   </div>
 
-  <script src="../utils/general.js"></script>
   <script src="../scripts/telegram.js" type="module"></script>
   <script src="../utils/header.js"></script>
 </body>
