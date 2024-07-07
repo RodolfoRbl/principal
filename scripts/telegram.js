@@ -28,10 +28,18 @@ function showSuccessCheckmark() {
   }, 2000);
 }
 
+function showLoading() {
+  document.getElementById('loading').style.display = 'flex';
+}
 
+function hideLoading() {
+  document.getElementById('loading').style.display = 'none';
+}
+
+hideLoading()
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
-
+  showLoading();
   const description = document.getElementById('row-desc').value;
   const cost = document.getElementById('row-cost').value;
   const urlCode = document.getElementById('url-code').value;
@@ -50,6 +58,7 @@ form.addEventListener('submit', async (event) => {
   } else {
     updateSuccessMessage('Please fill out all fields.', '', '', 'red');
   }
+  hideLoading();
 });
 
 function updateSuccessMessage(message, description, cost, color) {
